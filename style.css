@@ -1,0 +1,1335 @@
+/* ═══════════════════════════════════════════════════════════
+   VELVET SPIN — Soft Girl × Baddie Aesthetic
+   Design System & Full Styles
+═══════════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ─────────────────────────────────────── */
+:root {
+  /* Primary Palette */
+  --pink-soft:     #f4a0bf;
+  --pink-deep:     #e0719c;
+  --pink-blush:    #fce4ec;
+  --mauve:         #c8a0c8;
+  --lavender:      #c4a7e7;
+  --lavender-soft: #e8dcf8;
+  --plum:          #6e3e6e;
+  --plum-deep:     #3d1f4a;
+
+  /* Dynamic Mood Variables (Updated by JavaScript) */
+  --bg-base:       #180c24;
+  --bg-panel:      rgba(42, 20, 56, 0.65);
+  --bg-turntable:  linear-gradient(160deg, rgba(48, 22, 66, 0.9) 0%, rgba(28, 12, 44, 0.95) 100%);
+  --bg-card:       rgba(255, 255, 255, 0.05);
+  --bg-card-hover: rgba(255, 255, 255, 0.1);
+  --border-glass:  rgba(244, 160, 191, 0.2);
+
+  /* Text */
+  --text-primary:  #fde8f5;
+  --text-secondary: rgba(253, 232, 245, 0.65);
+  --text-muted:    rgba(253, 232, 245, 0.4);
+
+  /* Shadows */
+  --shadow-pink:   0 0 40px rgba(244, 160, 191, 0.25);
+  --shadow-plum:   0 8px 32px rgba(0, 0, 0, 0.6);
+
+  /* Accent (swappable by mood) */
+  --accent:        var(--pink-soft);
+  --accent-glow:   rgba(244, 160, 191, 0.4);
+
+  /* Misc */
+  --radius-sm:     10px;
+  --radius-md:     18px;
+  --radius-lg:     28px;
+  --radius-xl:     40px;
+  --transition:    0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-slow: 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ── Reset & Base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  transition: background 0.8s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Ambient Orbs ──────────────────────────────────────── */
+.ambient-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: orbFloat var(--d, 12s) ease-in-out infinite alternate;
+  transition: background 1s ease;
+}
+
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #e0719c, transparent 70%);
+  top: -150px; left: -100px;
+  --d: 14s;
+}
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #6e3e9e, transparent 70%);
+  bottom: -100px; right: -80px;
+  --d: 18s;
+  animation-delay: -5s;
+}
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #d4a94e, transparent 70%);
+  top: 40%; left: 50%;
+  --d: 10s;
+  animation-delay: -2s;
+  opacity: 0.2;
+}
+.orb-4 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, #c4a7e7, transparent 70%);
+  bottom: 20%; left: 10%;
+  --d: 16s;
+  animation-delay: -8s;
+  opacity: 0.25;
+}
+
+@keyframes orbFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 30px) scale(1.1); }
+}
+
+/* ── Particle Canvas ───────────────────────────────────── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.site-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border-glass);
+  background: rgba(26, 13, 46, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 1.4rem;
+  color: var(--accent);
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%, 100% { opacity: 1; text-shadow: 0 0 10px var(--accent-glow); }
+  50%       { opacity: 0.6; text-shadow: none; }
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+}
+
+.nav-pill {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 5px 16px;
+  border-radius: 100px;
+  opacity: 0.8;
+}
+
+/* ── Main Scene Layout ─────────────────────────────────── */
+.scene {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr 240px;
+  gap: 0;
+  padding: 32px 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  align-items: start;
+}
+
+/* ── Glassmorphism Panel Mixin ─────────────────────────── */
+.record-shelf,
+.vibes-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  padding: 28px 22px;
+  transition: background 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* ── Record Shelf ──────────────────────────────────────── */
+.record-shelf {
+  margin-right: 24px;
+}
+
+.shelf-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.shelf-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.shelf-sub {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 22px;
+}
+
+.records-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Record Card ───────────────────────────────────────── */
+.record-card {
+  position: relative;
+  background: var(--bg-glass-strong);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  cursor: grab;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.record-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,180,220,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: var(--transition);
+  border-radius: inherit;
+}
+
+.record-card:hover::before,
+.record-card:focus::before {
+  opacity: 1;
+}
+
+.record-card:hover,
+.record-card:focus {
+  transform: translateY(-3px) scale(1.02);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-pink), 0 0 0 1px rgba(244,160,191,0.15);
+  outline: none;
+}
+
+.record-card:active,
+.record-card.dragging {
+  cursor: grabbing;
+  transform: scale(0.96) rotate(-2deg);
+  opacity: 0.7;
+}
+
+/* ── Mini Vinyl on Card ────────────────────────────────── */
+.record-vinyl {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #1a1a2e 0%,
+    #0f0f1a 30%,
+    #1a1a2e 31%,
+    #0d0d18 38%,
+    #1a1a2e 39%,
+    #0d0d18 46%,
+    #1a1a2e 47%,
+    #0d0d18 54%,
+    #1a1a2e 55%,
+    #0d0d18 62%,
+    #1a1a2e 63%,
+    #0d0d18 70%,
+    #1a1a2e 71%,
+    #0f0f1a 100%
+  );
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  transition: transform var(--transition);
+}
+
+.record-card:hover .record-vinyl {
+  transform: rotate(15deg);
+}
+
+.vinyl-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.label-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+/* SVG labels fill their circle */
+.label-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Active platter label — larger */
+.active-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+.active-label .label-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.vinyl-hole {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #0a0a14;
+  z-index: 2;
+}
+
+/* ── Record Info ───────────────────────────────────────── */
+.record-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.record-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.record-artist {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.record-drag-hint {
+  position: absolute;
+  bottom: 8px; right: 10px;
+  font-size: 0.6rem;
+  color: var(--accent);
+  opacity: 0;
+  transition: var(--transition);
+  letter-spacing: 0.1em;
+}
+
+.record-card:hover .record-drag-hint {
+  opacity: 1;
+}
+
+/* ── Shelf Decoration ──────────────────────────────────── */
+.shelf-deco {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.deco-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border-glass);
+}
+
+.deco-text {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  font-style: italic;
+}
+
+/* ── Turntable Section ─────────────────────────────────── */
+.turntable-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.turntable-body {
+  background: var(--bg-turntable);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-xl);
+  padding: 36px 40px 32px;
+  box-shadow:
+    var(--shadow-plum),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px var(--border-glass);
+  backdrop-filter: blur(30px);
+  width: 100%;
+  max-width: 580px;
+  position: relative;
+  transition: background 0.8s ease, border-color 0.8s ease, box-shadow 0.8s ease;
+}
+
+/* Turntable surface (platter + tonearm row) */
+.turntable-surface {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+/* ── Platter Zone (drop target) ────────────────────────── */
+.platter-zone {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+
+
+.platter-zone.drag-over .platter {
+  box-shadow:
+    0 0 0 3px var(--accent),
+    0 0 60px var(--accent-glow),
+    0 0 120px rgba(244,160,191,0.15);
+}
+
+.platter-mat {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2a1a3e 0%, #1a0d28 100%);
+  border: 1px solid rgba(255,180,220,0.08);
+}
+
+.platter {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    #2a1020 0%,
+    #1a0a18 15%,
+    #0d0812 100%
+  );
+  position: relative;
+  box-shadow:
+    0 0 0 3px #111,
+    0 0 0 5px #1c1024,
+    0 0 0 8px #111,
+    0 0 0 10px #1c1024,
+    0 0 0 14px #111,
+    0 0 0 16px #1c1024,
+    0 0 0 20px #111,
+    0 0 0 22px #1c1024,
+    0 0 0 26px #111,
+    0 0 0 28px #1c1024,
+    0 20px 60px rgba(0,0,0,0.8);
+  transition: box-shadow var(--transition);
+  overflow: hidden;
+}
+
+/* ── Active Vinyl on Platter ───────────────────────────── */
+.platter-on-record {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-vinyl {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #1a1a2e 0%,
+    #0f0f1a 25%,
+    #1a1a2e 26%,
+    #0d0d18 33%,
+    #1a1a2e 34%,
+    #0d0d18 41%,
+    #1a1a2e 42%,
+    #0d0d18 49%,
+    #1a1a2e 50%,
+    #0d0d18 57%,
+    #1a1a2e 58%,
+    #0d0d18 65%,
+    #1a1a2e 66%,
+    #0f0f1a 80%,
+    #1a1a2e 100%
+  );
+  position: relative;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.active-vinyl.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.active-vinyl.spinning {
+  animation: vinylSpin 1.8s linear infinite;
+}
+
+@keyframes vinylSpin {
+  from { transform: scale(1) rotate(0deg); }
+  to   { transform: scale(1) rotate(360deg); }
+}
+
+.active-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}
+
+.active-label-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.active-hole {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #0a0a14;
+  z-index: 2;
+}
+
+/* Spindle */
+.spindle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #d0d0d0, #808080);
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+/* Drop Hint */
+.drop-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.drop-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drop-hint-circle {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  border: 2px dashed rgba(244, 160, 191, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  animation: hintPulse 2s ease-in-out infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% { border-color: rgba(244,160,191,0.3); transform: scale(1); }
+  50%       { border-color: rgba(244,160,191,0.7); transform: scale(1.05); }
+}
+
+.drop-hint-icon {
+  font-size: 1.6rem;
+  color: rgba(244,160,191,0.5);
+}
+
+.drop-hint-text {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(244,160,191,0.4);
+  text-transform: uppercase;
+}
+
+/* ── Tonearm ───────────────────────────────────────────── */
+/*
+  Real turntable layout:
+  - pivot is anchored relative to platter-zone top-right
+  - arm extends LEFT from the pivot
+  - parked: arm angled ~24° (pointing down-right, resting beside platter)
+  - playing: arm angled ~-38° (needle rests precisely on vinyl record grooves)
+  - transform-origin is at the pivot end (right side of the arm element)
+*/
+.tonearm-container {
+  position: absolute;
+  top: -10px;
+  right: -50px;
+  width: 220px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* The circular pivot ball */
+.tonearm-pivot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #b0b0b0, #666666);
+  border: 2px solid #444444;
+  box-shadow:
+    0 3px 10px rgba(0,0,0,0.8),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  z-index: 21;
+}
+
+/* Tiny screw dot on pivot */
+.tonearm-pivot::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #888888, #333333);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.6);
+}
+
+/* The rotating arm — origin is at the RIGHT end (pivot center) */
+.tonearm {
+  position: absolute;
+  top: 18px;
+  right: 18px;             /* align with pivot center */
+  width: 175px;            /* arm length calculated to reach vinyl grooves */
+  height: 8px;
+  transform-origin: right center;
+  /* Parked: arm angled 24° downward (pointing outward-right) */
+  transform: rotate(24deg);
+  transition: transform 1.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 19;
+}
+
+/* Playing: arm sweeps counter-clockwise, needle rests directly on vinyl */
+.tonearm.playing {
+  transform: rotate(-38deg);
+}
+
+/* The main arm tube */
+.tonearm-body {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  /* Leave ~30px on left for the head shell offset */
+  width: calc(100% - 30px);
+  height: 6px;
+  background: linear-gradient(to left, #d8d8d8, #bbb, #c8c8c8, #aaa);
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Sheen stripe along the arm */
+.tonearm-body::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255,255,255,0.5), rgba(255,255,255,0.1));
+  border-radius: 3px 3px 0 0;
+}
+
+/*
+  Head shell: offset piece at the tip of the arm
+  Angled ~15° relative to the arm (S-bend / offset angle)
+*/
+.tonearm-head {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-20deg);
+  transform-origin: right center;
+  width: 36px;
+  height: 6px;
+  background: linear-gradient(to left, #c0c0c0, #888);
+  border-radius: 3px;
+}
+
+/* The needle / stylus hanging down from the head shell tip */
+.tonearm-needle {
+  position: absolute;
+  left: -2px;
+  top: 100%;
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(to bottom, #aaa, #444);
+  border-radius: 0 0 2px 2px;
+  transform-origin: top center;
+  transform: rotate(20deg); /* counteract head shell angle so needle points down */
+}
+
+/* ── Turntable Controls ────────────────────────────────── */
+.turntable-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Now Playing */
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  transition: background 0.8s ease, border-color 0.8s ease;
+}
+
+.now-playing-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background 0.3s, box-shadow 0.3s;
+  flex-shrink: 0;
+}
+
+.now-playing-dot.active {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  animation: dotBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.now-playing-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.np-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.np-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.np-artist {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* ── Progress Bar ──────────────────────────────────────── */
+.progress-container {
+  opacity: 0.4;
+  transition: opacity 0.4s;
+}
+
+.progress-container.active {
+  opacity: 1;
+}
+
+.progress-bar {
+  position: relative;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--pink-soft), var(--lavender));
+  border-radius: 2px;
+  transition: width 0.2s linear;
+}
+
+.progress-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  cursor: pointer;
+  transition: left 0.2s linear, transform 0.2s, width 0.2s;
+}
+
+.progress-bar:hover .progress-thumb {
+  width: 16px; height: 16px;
+}
+
+.time-display {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-feature-settings: "tnum";
+}
+
+/* ── Transport Controls ────────────────────────────────── */
+.transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ctrl-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: 50%;
+  width: 46px; height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.ctrl-btn svg {
+  width: 18px; height: 18px;
+}
+
+.ctrl-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(244,160,191,0.08);
+  box-shadow: 0 0 16px var(--accent-glow);
+  transform: scale(1.08);
+}
+
+.ctrl-btn:active {
+  transform: scale(0.94);
+}
+
+.ctrl-play {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--pink-soft), var(--lavender));
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.ctrl-play svg {
+  width: 22px; height: 22px;
+}
+
+.ctrl-play:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px var(--accent-glow);
+  border-color: transparent;
+  color: white;
+  background: linear-gradient(135deg, var(--pink-deep), var(--mauve));
+}
+
+/* ── Sliders ───────────────────────────────────────────── */
+.sliders-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.slider-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.slider-icon {
+  color: var(--accent);
+}
+
+.slider-val {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* Custom range input */
+.fader {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-soft), var(--lavender));
+  box-shadow: 0 0 8px var(--accent-glow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fader::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.fader::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-soft), var(--lavender));
+  border: none;
+  cursor: pointer;
+}
+
+/* ── Vibes Panel ───────────────────────────────────────── */
+.vibes-panel {
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vibes-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.vibes-title em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ── Visualizer ────────────────────────────────────────── */
+.visualizer-wrap {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+#viz-canvas {
+  width: 100%;
+  height: 120px;
+  display: block;
+}
+
+.viz-label {
+  position: absolute;
+  bottom: 6px; right: 10px;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Vibe Tags ─────────────────────────────────────────── */
+.vibe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.vibe-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.vibe-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.vibe-tag.active {
+  background: linear-gradient(135deg, rgba(244,160,191,0.15), rgba(196,167,231,0.1));
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Toggle Switch ─────────────────────────────────────── */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px; height: 22px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0; height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 22px;
+  border: 1px solid var(--border-glass);
+  transition: var(--transition);
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  left: 3px; top: 3px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: var(--transition);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+  background: linear-gradient(135deg, rgba(244,160,191,0.3), rgba(196,167,231,0.2));
+  border-color: var(--accent);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+  transform: translateX(18px);
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* ── Mood Swatches ─────────────────────────────────────── */
+.mood-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mood-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mood-swatches {
+  display: flex;
+  gap: 10px;
+}
+
+.swatch {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.swatch:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 14px var(--c);
+}
+
+.swatch.active {
+  border-color: white;
+  transform: scale(1.15);
+  box-shadow: 0 0 14px var(--c);
+}
+
+/* ── Vibe Quote ────────────────────────────────────────── */
+.vibe-quote {
+  margin-top: auto;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.6;
+  text-align: center;
+  padding: 14px;
+  border-top: 1px solid var(--border-glass);
+}
+
+/* ── Footer ────────────────────────────────────────────── */
+.site-footer {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 16px 40px;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-glass);
+}
+
+/* ── Lift Animation for ejected records ────────────────── */
+@keyframes recordEject {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  50%  { transform: translateY(-30px) scale(1.05); opacity: 0.7; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.record-card.ejecting {
+  animation: recordEject 0.6s ease-in-out;
+}
+
+/* ── Drag Over State ───────────────────────────────────── */
+.platter-zone.drag-over::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,160,191,0.1), transparent 70%);
+  pointer-events: none;
+  animation: dropGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes dropGlow {
+  0%   { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* ── Tooltip for record hover ──────────────────────────── */
+.ctrl-btn[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.62rem;
+  background: rgba(26,13,46,0.9);
+  border: 1px solid var(--border-glass);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.ctrl-btn {
+  position: relative;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+::-webkit-scrollbar-thumb { background: rgba(244,160,191,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(244,160,191,0.4); }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .scene {
+    grid-template-columns: 240px 1fr 200px;
+    padding: 24px 24px;
+    gap: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .scene {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .record-shelf,
+  .vibes-panel {
+    margin: 0;
+  }
+
+  .records-grid {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .record-card {
+    min-width: 200px;
+  }
+
+  .turntable-body {
+    max-width: 100%;
+  }
+
+  .platter-zone {
+    width: 260px;
+    height: 260px;
+  }
+
+  .platter {
+    width: 260px;
+    height: 260px;
+  }
+
+  .active-vinyl {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* ── Vinyl Shimmer Overlay (decorative) ────────────────── */
+.active-vinyl::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(255,255,255,0.03) 10%,
+    transparent 20%,
+    rgba(255,255,255,0.03) 30%,
+    transparent 40%,
+    rgba(255,255,255,0.03) 50%,
+    transparent 60%,
+    rgba(255,255,255,0.03) 70%,
+    transparent 80%,
+    rgba(255,255,255,0.03) 90%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Selection ─────────────────────────────────────────── */
+::selection {
+  background: rgba(244,160,191,0.25);
+  color: var(--text-primary);
+}

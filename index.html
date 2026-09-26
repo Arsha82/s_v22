@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✦ VELVET SPIN — Soft Baddie Turntable</title>
+  <meta name="description" content="A luxurious soft girl meets baddie aesthetic interactive vinyl turntable experience. Drag records, drop the needle, feel the vibe." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient Background Orbs -->
+  <div class="ambient-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <!-- Floating Particles -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo">
+      <span class="logo-icon">✦</span>
+      <span class="logo-text">VELVET SPIN</span>
+    </div>
+    <nav class="header-nav">
+      <span class="nav-pill">Now Playing</span>
+    </nav>
+  </header>
+
+  <!-- Main Scene -->
+  <main class="scene">
+
+    <!-- Left Panel — Record Shelf -->
+    <aside class="record-shelf" id="record-shelf" aria-label="Record collection">
+      <h2 class="shelf-title">Your <em>Crate</em></h2>
+      <p class="shelf-sub">Drag a record to the platter ✦</p>
+
+      <div class="records-grid">
+
+        <!-- Record 1 -->
+        <div
+          class="record-card"
+          id="record-1"
+          draggable="true"
+          data-src="02 상남자 (Boy In Luv).mp3"
+          data-title="Boy In Luv"
+          data-artist="BTS"
+          data-label="velvet"
+          data-color="#e8a0bf"
+          tabindex="0"
+          role="button"
+          aria-label="Drag Boy In Luv by BTS to the turntable"
+        >
+          <div class="record-vinyl" data-label="velvet">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label label-velvet">
+              <!-- Boy In Luv SVG Label -->
+              <svg class="label-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Boy In Luv label">
+                <defs>
+                  <radialGradient id="grad-bil" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#f9c8d8"/>
+                    <stop offset="50%" stop-color="#e8729a"/>
+                    <stop offset="100%" stop-color="#b84070"/>
+                  </radialGradient>
+                  <filter id="glow-bil">
+                    <feGaussianBlur stdDeviation="1" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <circle cx="50" cy="50" r="50" fill="url(#grad-bil)"/>
+                <!-- Decorative ring -->
+                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,220,230,0.4)" stroke-width="0.8"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,200,215,0.25)" stroke-width="0.5"/>
+                <!-- Petal deco -->
+                <g opacity="0.5" font-size="7" text-anchor="middle" fill="#fde8ef">
+                  <text x="50" y="22">✿</text>
+                  <text x="78" y="50">✿</text>
+                  <text x="50" y="82">✿</text>
+                  <text x="22" y="50">✿</text>
+                </g>
+                <!-- Song title -->
+                <text x="50" y="45" text-anchor="middle" font-family="Georgia, serif" font-size="9.5" font-weight="bold" fill="#fff" filter="url(#glow-bil)" letter-spacing="0.5">BOY IN LUV</text>
+                <!-- Divider -->
+                <line x1="28" y1="51" x2="72" y2="51" stroke="rgba(255,255,255,0.5)" stroke-width="0.7"/>
+                <!-- Artist -->
+                <text x="50" y="60" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="rgba(255,255,255,0.85)" letter-spacing="1.5">BTS</text>
+                <!-- Gold star accent -->
+                <text x="50" y="70" text-anchor="middle" font-size="6" fill="#ffd580" opacity="0.9">✦</text>
+                <!-- Center hole -->
+                <circle cx="50" cy="50" r="3.5" fill="#1a0814" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="vinyl-hole"></div>
+          </div>
+          <div class="record-info">
+            <span class="record-title">Boy In Luv</span>
+            <span class="record-artist">BTS</span>
+          </div>
+          <div class="record-drag-hint">
+            <span>✦ drag me</span>
+          </div>
+        </div>
+
+        <!-- Record 2 -->
+        <div
+          class="record-card"
+          id="record-2"
+          draggable="true"
+          data-src="05. Butterfly (Prologue Mix).mp3"
+          data-title="Butterfly"
+          data-artist="BTS"
+          data-label="aurora"
+          data-color="#c4a7e7"
+          tabindex="0"
+          role="button"
+          aria-label="Drag Butterfly by BTS to the turntable"
+        >
+          <div class="record-vinyl" data-label="aurora">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label label-aurora">
+              <!-- Butterfly SVG Label -->
+              <svg class="label-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Butterfly label">
+                <defs>
+                  <radialGradient id="grad-bf" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ede0ff"/>
+                    <stop offset="50%" stop-color="#9b6fd4"/>
+                    <stop offset="100%" stop-color="#4a1e8a"/>
+                  </radialGradient>
+                  <filter id="glow-bf">
+                    <feGaussianBlur stdDeviation="1" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                </defs>
+                <circle cx="50" cy="50" r="50" fill="url(#grad-bf)"/>
+                <!-- Decorative rings -->
+                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(220,200,255,0.4)" stroke-width="0.8"/>
+                <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(200,180,255,0.2)" stroke-width="0.5"/>
+                <!-- Moon & star deco -->
+                <text x="50" y="22" text-anchor="middle" font-size="8" fill="#ffd580" opacity="0.7">🌙</text>
+                <g opacity="0.45" font-size="6" fill="#e8d8ff">
+                  <text x="20" y="38">✦</text>
+                  <text x="78" y="38">✦</text>
+                  <text x="20" y="66">✧</text>
+                  <text x="78" y="66">✧</text>
+                </g>
+                <!-- Song title -->
+                <text x="50" y="46" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-weight="bold" fill="#fff" filter="url(#glow-bf)" letter-spacing="1">BUTTERFLY</text>
+                <!-- Divider -->
+                <line x1="28" y1="52" x2="72" y2="52" stroke="rgba(255,215,100,0.5)" stroke-width="0.7"/>
+                <!-- Artist -->
+                <text x="50" y="61" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="rgba(255,255,255,0.85)" letter-spacing="1.5">BTS</text>
+                <!-- Sub label -->
+                <text x="50" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="5" fill="rgba(220,200,255,0.7)" letter-spacing="0.5">Prologue Mix</text>
+                <!-- Center hole -->
+                <circle cx="50" cy="50" r="3.5" fill="#0d0820" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="vinyl-hole"></div>
+          </div>
+          <div class="record-info">
+            <span class="record-title">Butterfly</span>
+            <span class="record-artist">BTS — Prologue Mix</span>
+          </div>
+          <div class="record-drag-hint">
+            <span>✦ drag me</span>
+          </div>
+        </div>
+
+        <!-- Record 3 -->
+        <div
+          class="record-card"
+          id="record-3"
+          draggable="true"
+          data-src="Sarah_Barrios_-_Have_We_Met_Before_CeeNaija.com_.mp3"
+          data-title="Have We Met Before"
+          data-artist="Sarah Barrios and Eric Nam"
+          data-label="mist"
+          data-color="#7ecac3"
+          tabindex="0"
+          role="button"
+          aria-label="Drag Have We Met Before by Sarah Barrios and Eric Nam to the turntable"
+        >
+          <div class="record-vinyl" data-label="mist">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label label-mist">
+              <!-- Have We Met Before SVG Label -->
+              <svg class="label-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Have We Met Before label">
+                <defs>
+                  <radialGradient id="grad-hwmb" cx="50%" cy="40%" r="55%">
+                    <stop offset="0%" stop-color="#c8f0ee"/>
+                    <stop offset="45%" stop-color="#4aada6"/>
+                    <stop offset="100%" stop-color="#1a4a48"/>
+                  </radialGradient>
+                  <filter id="glow-hwmb">
+                    <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                  </filter>
+                  <radialGradient id="mist-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="rgba(180,240,235,0.35)"/>
+                    <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="50" cy="50" r="50" fill="url(#grad-hwmb)"/>
+                <!-- Mist overlay -->
+                <circle cx="50" cy="50" r="50" fill="url(#mist-glow)"/>
+                <!-- Decorative rings -->
+                <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(180,240,235,0.35)" stroke-width="0.8"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(150,220,215,0.2)" stroke-width="0.5"/>
+                <!-- Star cluster -->
+                <g opacity="0.55" fill="#d0f5f2">
+                  <circle cx="22" cy="28" r="1"/>
+                  <circle cx="78" cy="24" r="1.2"/>
+                  <circle cx="15" cy="60" r="0.8"/>
+                  <circle cx="84" cy="68" r="1"/>
+                  <circle cx="35" cy="18" r="0.7"/>
+                  <circle cx="65" cy="82" r="0.9"/>
+                </g>
+                <!-- Sparkle accents -->
+                <g font-size="5" fill="#b0ede8" opacity="0.6" text-anchor="middle">
+                  <text x="18" y="44">✦</text>
+                  <text x="82" y="44">✦</text>
+                  <text x="50" y="18">✧</text>
+                  <text x="50" y="85">✧</text>
+                </g>
+                <!-- Song title — split across two lines -->
+                <text x="50" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="8.5" font-weight="bold" fill="#fff" filter="url(#glow-hwmb)" letter-spacing="0.8">HAVE WE</text>
+                <text x="50" y="50" text-anchor="middle" font-family="Georgia, serif" font-size="8.5" font-weight="bold" fill="#fff" filter="url(#glow-hwmb)" letter-spacing="0.8">MET BEFORE</text>
+                <!-- Divider -->
+                <line x1="25" y1="55" x2="75" y2="55" stroke="rgba(180,240,235,0.5)" stroke-width="0.7"/>
+                <!-- Artist -->
+                <text x="50" y="64" text-anchor="middle" font-family="Georgia, serif" font-size="5.5" fill="rgba(220,248,246,0.9)" letter-spacing="0.8">SARAH BARRIOS &amp; ERIC NAM</text>
+                <!-- Center hole -->
+                <circle cx="50" cy="50" r="3.5" fill="#061c1c" opacity="0.75"/>
+              </svg>
+            </div>
+            <div class="vinyl-hole"></div>
+          </div>
+          <div class="record-info">
+            <span class="record-title">Have We Met Before</span>
+            <span class="record-artist">Sarah Barrios and Eric Nam</span>
+          </div>
+          <div class="record-drag-hint">
+            <span>✦ drag me</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Shelf Decoration -->
+      <div class="shelf-deco" aria-hidden="true">
+        <div class="deco-line"></div>
+        <span class="deco-text">a soft baddie's collection</span>
+        <div class="deco-line"></div>
+      </div>
+    </aside>
+
+    <!-- Center — Turntable -->
+    <section class="turntable-section" aria-label="Turntable">
+
+      <div class="turntable-body" id="turntable-body">
+
+        <!-- Turntable Surface -->
+        <div class="turntable-surface">
+
+          <!-- Drop Zone + Platter -->
+          <div
+            class="platter-zone"
+            id="platter-zone"
+            aria-dropeffect="move"
+            aria-label="Turntable platter — drop a record here"
+          >
+            <div class="platter-mat"></div>
+            <div class="platter" id="platter">
+              <div class="platter-on-record" id="platter-on-record">
+                <!-- Spinning record appears here -->
+                <div class="active-vinyl" id="active-vinyl">
+                  <div class="active-grooves"></div>
+                  <div class="active-label" id="active-label">
+                    <!-- JS will inject the cloned SVG label here -->
+                  </div>
+                  <div class="active-hole"></div>
+                </div>
+              </div>
+              <div class="spindle" id="spindle"></div>
+              <div class="drop-hint" id="drop-hint">
+                <div class="drop-hint-circle">
+                  <span class="drop-hint-icon">♪</span>
+                  <span class="drop-hint-text">drop it</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tonearm — anchored directly to platter-zone so geometry never shifts in split view -->
+            <div class="tonearm-container" id="tonearm-container">
+              <div class="tonearm-pivot"></div>
+              <div class="tonearm" id="tonearm">
+                <div class="tonearm-body"></div>
+                <div class="tonearm-head">
+                  <div class="tonearm-needle"></div>
+                </div>
+              </div>
+            </div>
+          </div><!-- end platter-zone -->
+
+        </div><!-- end turntable-surface -->
+
+        <!-- Turntable Base Controls -->
+        <div class="turntable-controls">
+
+          <!-- Now Playing Info -->
+          <div class="now-playing" id="now-playing">
+            <div class="now-playing-dot" id="now-playing-dot"></div>
+            <div class="now-playing-text">
+              <span class="np-label">now playing</span>
+              <span class="np-title" id="np-title">—</span>
+              <span class="np-artist" id="np-artist">drag or click a record</span>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+              <div class="progress-thumb" id="progress-thumb"></div>
+            </div>
+            <div class="time-display">
+              <span id="time-current">0:00</span>
+              <span id="time-total">0:00</span>
+            </div>
+          </div>
+
+          <!-- Transport Controls -->
+          <div class="transport">
+            <button class="ctrl-btn" id="btn-rewind" aria-label="Previous track / Rewind" title="Previous song">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
+            </button>
+            <button class="ctrl-btn ctrl-play" id="btn-play" aria-label="Play / Pause" title="Play / Pause">
+              <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+            <button class="ctrl-btn" id="btn-next" aria-label="Next track" title="Next song">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
+            </button>
+            <button class="ctrl-btn" id="btn-lift" aria-label="Lift record" title="Lift record off platter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+            </button>
+          </div>
+
+          <!-- Speed + Volume -->
+          <div class="sliders-row">
+            <div class="slider-group">
+              <label class="slider-label" for="speed-slider">
+                <span class="slider-icon">⟳</span> RPM
+              </label>
+              <div class="slider-track-wrap">
+                <input type="range" id="speed-slider" class="fader" min="0.5" max="1.5" step="0.01" value="1" aria-label="Playback speed" />
+              </div>
+              <span class="slider-val" id="speed-val">33⅓</span>
+            </div>
+            <div class="slider-group">
+              <label class="slider-label" for="vol-slider">
+                <span class="slider-icon">🔊</span> VOL
+              </label>
+              <div class="slider-track-wrap">
+                <input type="range" id="vol-slider" class="fader" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" />
+              </div>
+              <span class="slider-val" id="vol-val">80%</span>
+            </div>
+          </div>
+
+        </div><!-- end turntable-controls -->
+
+      </div><!-- end turntable-body -->
+
+    </section>
+
+    <!-- Right Panel — Vibes & EQ -->
+    <aside class="vibes-panel" aria-label="Vibes panel">
+      <h2 class="vibes-title">the <em>vibe</em></h2>
+
+      <!-- Audio Visualizer -->
+      <div class="visualizer-wrap">
+        <canvas id="viz-canvas" width="160" height="120" aria-hidden="true"></canvas>
+        <div class="viz-label">freq spectrum</div>
+      </div>
+
+      <!-- Vibe Tags -->
+      <div class="vibe-tags" id="vibe-tags">
+        <span class="vibe-tag active" data-vibe="dreamy">✦ dreamy</span>
+        <span class="vibe-tag" data-vibe="electric">⚡ electric</span>
+        <span class="vibe-tag" data-vibe="melancholy">🌙 melancholy</span>
+        <span class="vibe-tag" data-vibe="euphoric">✨ euphoric</span>
+        <span class="vibe-tag" data-vibe="moody">🖤 moody</span>
+      </div>
+
+      <!-- Loop Toggle -->
+      <div class="toggle-row">
+        <span class="toggle-label">Loop</span>
+        <label class="toggle-switch" for="loop-toggle">
+          <input type="checkbox" id="loop-toggle" checked aria-label="Toggle loop" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+
+
+      <!-- Mood Palette -->
+      <div class="mood-section">
+        <span class="mood-label">mood palette</span>
+        <div class="mood-swatches">
+          <button class="swatch active" id="swatch-pink" data-mood="pink" style="--c:#f4a0bf" aria-label="Blush Pink" title="Blush Pink"></button>
+          <button class="swatch" id="swatch-purple" data-mood="purple" style="--c:#c4a7e7" aria-label="Dreamy Lilac" title="Dreamy Lilac"></button>
+          <button class="swatch" id="swatch-gold" data-mood="gold" style="--c:#e5be7a" aria-label="Honey Matcha" title="Honey Matcha"></button>
+          <button class="swatch" id="swatch-midnight" data-mood="midnight" style="--c:#8ea2ff" aria-label="Indigo Sky" title="Indigo Sky"></button>
+          <button class="swatch" id="swatch-cherry" data-mood="cherry" style="--c:#e65c7b" aria-label="Cherry Velvet" title="Cherry Velvet"></button>
+        </div>
+      </div>
+
+      <!-- Floating Quote -->
+      <div class="vibe-quote" id="vibe-quote">
+        <em>"she's soft as silk,<br/>sharp as a blade ✦"</em>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <span>✦ VELVET SPIN &mdash; a soft baddie's playlist &mdash; built with love &amp; vinyl</span>
+  </footer>
+
+  <!-- Needle Drop SFX -->
+  <audio id="sfx-needle" src="record-vinyl-needle-drop.mp3" preload="auto"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
